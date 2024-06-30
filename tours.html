@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WORLD</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Century Gothic;
+      scroll-behavior: smooth;
+      scroll-padding-top: 2rem;
+    }
+    
+    header {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hills.jpg');
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      min-height: 100px;
+    }
+
+    .search-box {
+      float: right;
+      margin-top: 10px;
+    }
+
+    .search-box input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .search-box button {
+      padding: 10px;
+      border: none;
+      background-color: #333;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .hero {
+      background-color: #f5f5f5;
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none; 
+      display: inline-block; 
+    }
+
+    .destinations {
+      padding: 50px 0;
+    }
+
+    .destinations h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .destination-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .destination-card {
+      width: 300px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    .destination-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .destination-card h3 {
+      padding: 10px;
+      font-size: 18px;
+    }
+
+    .destination-card p {
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    .tours {
+      padding: 50px 0;
+    }
+
+    .tours h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    ul {
+      float: right;
+      list-style-type: none;
+      margin-top: 30px;
+      margin-right: 60px;
+    }
+
+    ul li {
+      display: inline-block;
+    }
+
+    ul li a {
+      text-decoration: none;
+      color: #fff;
+      padding: 5px 20px;
+      border: 1px solid transparent;
+      transition: 0.5s ease;
+    }
+
+    ul li a:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    ul li.active a {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .main {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .title {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .title h1 {
+      color: #fff;
+      font-size: 85px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .btn {
+      border: 1px solid #fff;
+      padding: 5px 20px;
+      color: #fff;
+      transition: 0.6s ease;
+      font-size: 18px;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    section {
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    #home, #about, #food, #offers, #treks, #images, #packages, #contact {
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 80%;
+      margin: auto;
+    }
+
+    .contact-info {
+      margin-bottom: 30px;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .contact-form button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .contact-form button:hover {
+      background-color: #555;
+    }
+
+    .success-message {
+      display: none;
+      color: green;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#tours">Tours & Packages</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="search-box">
+        <input type="text" placeholder="Search destinations, tours, or hotels">
+        <button type="button"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+    <div class="title">
+      <h1>Wandering</h1>
+    </div>
+    <div class="button">
+      <a href="#videos" class="btn">WATCH VIDEOS</a>
+      <a href="#basic-skill" class="btn">BASIC SKILL</a>
+      <a href="#learn-more" class="btn">LEARN MORE</a>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="container">
+      <h1>Explore the World</h1>
+      <p>Discover breathtaking destinations, exciting tours, and unforgettable experiences.</p>
+      <a href="#" class="btn">Start Planning Your Trip</a>
+    </div>
+  </section>
+  <section class="destinations" id="destinations">
+    <div class="container">
+      <h2>Popular Destinations</h2>
+      <div class="destination-cards">
+        <div class="destination-card">
+          <img src="about.jpg" alt="Destination 1">
+          <h3>LONAVALA FORT</h3>
+          <p>It is based in Maharashtra, It is very beautiful in monsoon</p>
+          <a href="#" class="btn">Learn More</a>
+        </div>
+        <div class="destination-card">
+          <img src="kedar.jpg" alt="Destination 1">
+          <h3>Kedarnath Temple</h3>
+          <p>Kedarnath Temple is its unique lingam. Devotees believe Lord Shiva himself worship himself here.</p>
+          <a href="#" class="btn">Learn More</a>
+        </div>
+        <div class="destination-card">
+          <img src="trek.jpg" alt="Destination 3">
+          <h3>Sahyadri Treks Pune</h3>
+          <p>Sahyadri Mountains in the Western Ghats is 1600 km in length running parallel to the western coastline.</p>
+          <a href="#" class="btn">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="tours" id="tours">
+    <div class="container">
+        <h2>Tours & Packages</h2>
+        <div class="tour-cards">
+            <div class="tour-card">
+                <img src="goa.jpg" alt="Tour 1">
+                <h3>Goa Tour</h3>
+                <p>Golden Triangle vacation with us be an opportunity to witness the best reflection of the flavours of the country.</p>
+                <div class="price">
+                    <b>RS 15000/- </b>
+                    <span>7 days</span>
+                </div>
+                <br>
+                <a href="#" class="btn">Book Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="container">
+        <h2>About Us</h2>
+        <p>We're passionate about crafting unforgettable travel experiences that go beyond the ordinary. We believe in the transformative power of travel and strive to help you discover the world in a way that is both meaningful and enjoyable. Whether you're seeking an adventurous expedition, a relaxing retreat, or a cultural immersion, our experienced guides and curated itineraries will ensure you have a truly memorable journey.</p>
+        <a href="#" class="btn">Read More</a>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <p>Have a question or want to get in touch? Fill out the form below and we'll get back to you as soon as possible.</p>
+        </div>
+        <form id="contact-form" class="contact-form" action="#">
+            <input type="text" name="name" id="name" placeholder="Your Name" required>
+            <input type="email" name="email" id="email" placeholder="Your Email" required>
+            <textarea name="message" id="message" placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit" id="submit-btn">Send Message</button>
+            <p id="success-message" class="success-message">Message sent successfully!</p>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <!-- Footer content here -->
+    </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    const successMessage = document.getElementById('success-message');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); 
+
+
+      setTimeout(function() {
+        successMessage.style.display = 'block';
+        form.reset();
+      }, 1000); 
+    });
+  });
+</script>
+
+</body>
+</html>
